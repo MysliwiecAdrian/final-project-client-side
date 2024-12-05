@@ -1,9 +1,3 @@
-/*==================================================
-NewStudentView.js
-
-The Views component is responsible for rendering web page with data provided by the corresponding Container component.
-It constructs a React component to display the new student page.
-================================================== */
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
@@ -52,14 +46,14 @@ customValidation.prototype = {
   },
 };
 
-const NewStudentView = (props) => {
-  const { handleChange, handleSubmit, handleChangeNames } = props;
+const EditStudentView = (props) => {
+  const { handleChange, handleSubmit, handleChangeNames, student } = props;
   const classes = useStyles();
 
   // Render a New Student view with an input form
   return (
     <div>
-      <h1>New Student</h1>
+      <h1>Edit Student</h1>
 
       <div className={classes.root}>
         <div className={classes.formContainer}>
@@ -72,7 +66,7 @@ const NewStudentView = (props) => {
                 color: "#11153e",
               }}
             >
-              Add a Student
+              {student.firstname} {student.lastname}
             </Typography>
           </div>
           <form
@@ -85,6 +79,7 @@ const NewStudentView = (props) => {
             <input
               type="text"
               name="firstname"
+              defaultValue={student.firstname}
               onChange={(e) => handleChangeNames(e)}
             />
             <br />
@@ -96,6 +91,7 @@ const NewStudentView = (props) => {
             <input
               type="text"
               name="lastname"
+              defaultValue={student.lastname}
               onChange={(e) => handleChangeNames(e)}
             />
             <br />
@@ -104,7 +100,12 @@ const NewStudentView = (props) => {
             <label style={{ color: "#11153e", fontWeight: "bold" }}>
               Email:{" "}
             </label>
-            <input type="text" name="email" onChange={(e) => handleChange(e)} />
+            <input
+              type="text"
+              name="email"
+              onChange={(e) => handleChange(e)}
+              defaultValue={student.email}
+            />
             <br />
             <br />
 
@@ -112,9 +113,9 @@ const NewStudentView = (props) => {
               Image URL:{" "}
             </label>
             <input
-              placeholder="(optional)"
               type="text"
               name="imageUrl"
+              defaultValue={student.imageURL ? student.imageURL : "Optional"}
               onChange={(e) => handleChange(e)}
             />
             <br />
@@ -127,6 +128,7 @@ const NewStudentView = (props) => {
               type="number"
               step="0.1"
               name="gpa"
+              defaultValue={student.gpa}
               onChange={(e) => handleChange(e)}
             />
             <br />
@@ -138,6 +140,7 @@ const NewStudentView = (props) => {
             <input
               type="number"
               name="campusId"
+              defaultValue={student.campusId}
               onChange={(e) => handleChange(e)}
             />
             <br />
@@ -155,4 +158,4 @@ const NewStudentView = (props) => {
   );
 };
 
-export default NewStudentView;
+export default EditStudentView;
